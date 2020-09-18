@@ -33,10 +33,17 @@ class Main extends Component {
     console.log('sudah di set');
   }
 
+  categoryHandle = (data_id) => {
+    console.log(data_id);
+    this.setState({
+      kategori_id : data_id
+    })
+  }
+
   render() {
     return (
       <Fragment>
-        <div className="main container py-3">
+        <div className="main container pt-1 pb-2">
           <div className="pembagi">
           {/* Menu main */}
             <div className="kolom1"> 
@@ -47,10 +54,10 @@ class Main extends Component {
                 <Header />
               </div>
               <div className="row">
-                <Kategori onCategory={this.onCategory} />
+                <Kategori categoryHandle={this.categoryHandle} />
               </div>
               <div className="row">
-                <Populer onPopulerChange={this.onPopulerChange} makanan_id={this.state.kategori_id} />
+                <Populer onPopulerChange={this.onPopulerChange} category={this.state.kategori_id} />
               </div>
             </div>
           {/* End Menu Main   */}

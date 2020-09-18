@@ -9,15 +9,35 @@ class Populer extends Component {
     this.state = {
       data : [],
       updateByName : '',
-      id_makanan : this.props.makanan_id
     }
   }
 
+  componentDidUpdate(prevProps) {
+    console.log('componentupdate');
+    console.log('componentupdate', this.props.category);
+    if( this.props.category !== prevProps.category ) {
+      const catId = this.props.category
+      console.log('id', catId);
+      const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer?category_id=${catId}`
+      Axios
+      .post(url)
+      .then(berhasil => {
+        console.log('berhasil', berhasil);
+        this.setState({
+          data : berhasil.data.data
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
+  }
+  
   onPopulerChange = populer => {
     console.log(populer);
     this.props.onPopulerChange(populer)
   }
-
+  
   onBasedCategory = () => {
     const catId = this.id_makanan;
     const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer?category_id=${catId}`;
@@ -33,7 +53,7 @@ class Populer extends Component {
       console.log('gagal filter', gagal);
     })
   }
-
+  
   componentDidMount() {
     console.log(this.state.updateByName);
     const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer/all`
@@ -48,7 +68,7 @@ class Populer extends Component {
       console.log('gagal fetch data', gagal)
     })
   }
-
+  
   
 
   render() {

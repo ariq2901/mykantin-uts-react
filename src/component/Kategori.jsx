@@ -10,11 +10,10 @@ class Kategori extends Component {
   }
   
   
-  onCategory = id => {
-    console.log('categori id', id);
-    this.props.onCategory(id)
+  categoryHandle = id => {
+    console.log('categori handler', id);
+    this.props.categoryHandle(id)
   }
-
 
   // const catId = id;
   // const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer?category_id=${catId}`;
@@ -60,7 +59,7 @@ class Kategori extends Component {
         <div className="row mt-5">
           <div className="pembungkus">
             {this.state.data.map((kategori, index) =>
-              <button onClick={() => this.onCategory(kategori.id)} value={kategori.id} key={kategori.id}>
+              <button onClick={() => this.categoryHandle(kategori.id)} value={kategori.id} key={kategori.id}>
                 <div className="image">
                   <img src={kategori.img}/>
                   <div className="title">{kategori.name}</div>
