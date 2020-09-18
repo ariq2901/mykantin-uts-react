@@ -1,38 +1,221 @@
-.App {
+html,body {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.main.container {
+  margin: 0 !important;
+}
+
+.pembagi {
+  display: flex;
+}
+
+.pembagi .kolom1 {
+  width: 900px;
+}
+
+.form-group {
+  position: relative;
+}
+
+input.search {
+  width: 190% !important;
+  padding-left: 40px;
+  border-radius: 20px;
+}
+
+.fa-search {
+  position: absolute;
+  top: 32%;
+  left: 4%;
+  color: rgb(130, 127, 127);
+  z-index: 10;
+}
+
+.ovheader {
+  overflow: hidden;
+  width: 100%;
+  height: 80%;
+  border-radius: 50px;
+}
+
+img.himage {
+  transform: scale(0.99);
+  transform: translate(-80px, -20px);
+}
+
+span.htitle {
+  font-size: 23px;
+}
+
+.atasan {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn.btn-warning {
+  border-radius: 60px;
+  height: 30px;
+  width: 130px;
+  font-size: 12px;
+  color: #ffffff;
+  background-color: #fb6d3a !important;
+  border: unset !important;
+}
+
+.pembungkus {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.image {
+  position: relative;
   text-align: center;
+  color: #ffffff;
+  width: 201px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.image img {
+  filter: brightness(60%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.image .title {
+  position: absolute;
+  font-size: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.imagep {
+  position: relative;
+  width: 280px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.imagep .durasi {
+  position: absolute;
+  width: 30%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 5%;
+  left: 2%;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  color: rgb(33, 30, 30)000;
+}
+
+.imagep img {
+  transform: scale(1.4);
+}
+
+.kolom2 {
+  margin-left: 40px;
+}
+
+button:focus {
+  outline: unset !important;
+}
+
+.box {
+  margin-top: 15px;
+  width: 405px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: baseline;
+}
+
+.box i {
+  font-size: 17px;
+}
+
+i.fa-heart {
+  order: 3;
+}
+
+i.fa-cloud {
+  order: 2;
+}
+
+.person {
+  order: 1;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.person img {
+  width: 60px;
+  transform: translate(-9px,-1px);
+}
+
+.pesanan {
+  margin: 16px 0 0 120px;
+  width: 280px;
+}
+
+.balance {
+  margin-top: 25px;
+  padding: 15px;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  width: 250px;
+  height: 140px;
+  background-color: #6455c2;
+  border-radius: 18px;
 }
 
-.App-link {
-  color: #61dafb;
+span.nama, span.id {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+span.saldo {
+  font-size: 25px;
+}
+.pembungkus button {
+  border: none;
+  background-color: transparent;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pembungkus button:active {
+  border: unset !important;
+  background-color: transparent;
+}
+
+.modal-content {
+  width: 90% !important;
+}
+
+.container.mod {
+  width: 100%;
+}
+
+.wrapImage {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.wrapImage img {
+  transform: translate(0, -50px);
+  width: 100%;
 }
