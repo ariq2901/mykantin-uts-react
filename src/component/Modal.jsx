@@ -15,29 +15,53 @@ class Modal extends Component {
       rating : '',
       waktu : '',
       populer : [],
+      pesanan : [],
+      total : 0,
     }
   }
 
   componentDidUpdate(prevProps) {
-    // if( this.props.name !== prevProps.name ) {
-    //   console.log('props name', this.props.name);
-    //   const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer/`;
-    //   const payload = {
-    //     category_id : this.props.name
-    //   }
-    //   console.log('payload', payload);
-    //   Axios
-    //   .post(url, payload)
-    //   .then(satuan => {
-    //     console.log('satuan', satuan);
-    //     // this.setState({
-    //     //   data : sa
-    //     // })
-    //   })
-    //   .catch(error => {
-    //     console.log('error', error);
-    //   })
-    // }
+    if ( this.props.populer_data !== prevProps.populer_data ) {
+      this.setState({
+        name : this.props.populer_data.name,
+        harga : this.props.populer_data.harga,
+        jumlah : this.props.populer_data.jumlah,
+        rating : this.props.populer_data.rating,
+        image : this.props.populer_data.image,
+        pesan : this.props.populer_data.pesan
+      })
+    }
+  }
+
+  componentDidMount() {
+    console.log('didMount');
+    console.log('populer_data', this.state.populer_data);
+    console.log('total', this.state.total);
+  }
+
+  onInput = (e) => {
+    e.preventDefault()
+    console.log(e.target.value);
+    if( e.target.id === "minus" ) {
+      this.setState({
+        pesan : this.state.pesan + 1,
+        jumlah : this.state.jumlah + 1
+      })
+    } else {
+      this.setState({
+        pesan : this.state.pesan + 1,
+        jumlah : this.state.jumlah - 1
+      })
+    }
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    var hasil = [this.state.name,this.state.harga,this.state.pesan,this.state.image];
+    this.setState({
+      pesanan : hasil
+    })
+    this.props.pesanan(this.state.pesanan)
   }
 
   render() {
@@ -47,20 +71,28 @@ class Modal extends Component {
         <div class="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-            {console.log('dari modal name', this.props.name)}
               <div className="container mod py-3">
                 <div className="wrapImage">
-                  <img src={this.props.name[5]} alt=""/>
+                  <img src={this.state.image}/>
                 </div>
                 <div className="status mt-2">
-                  <span className="font-weight-bold">{this.props.name[0]}</span>
+                  <span className="font-weight-bold">{this.state.name}</span>
                   <div className="rating mt-1">
-                    <i className="far fa-star"></i><span>4.7</span><span className="ml-5">{this.props.name[1]}</span>
+                    <i className="far fa-star"></i><span>{this.state.rating}</span><span className="ml-5">{this.state.harga}</span>
                   </div>
                 </div>
                 {/* tombol */}
+                {console.log('pesanan', this.state.pesanan)}
                 <div className="kalkulasi mt-4">
-                  <span>Stock : {this.props.name[3]}</span>
+                  <span>Stock : {this.state.jumlah}</span>
+                  <div className="penjumlahan">
+                    <button type="button" className="btn btn-primary" id="minus" onClick={this.onInput}>-</button>
+                    <form onSubmit={this.onSubmit} class="d-inline">
+                      <input type="number" name="pesan" class="mx-2" id="totalpesan" value={this.state.pesan} />
+                      <button type="button" className="btn btn-primary" id="plus" onClick={this.onInput}>+</button>
+                      <button type="submit" className="btn btn-primary ml-4">Pesan</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>

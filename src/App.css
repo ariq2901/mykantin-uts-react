@@ -219,3 +219,36 @@ span.saldo {
   transform: translate(0, -50px);
   width: 100%;
 }
+
+.kalkulasi {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+#totalpesan {
+  width: 50px;
+  padding-left: 10px;
+  text-align: center;
+}
+
+.checkout {
+  width: 250px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.imgBrand {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imgBrand img {
+  width:70px;
+}

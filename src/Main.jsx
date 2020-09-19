@@ -15,7 +15,9 @@ class Main extends Component {
     this.state = {
       populer : [],
       kategori_id : '',
-      data : []
+      data : [],
+      populer_data : [],
+      hasil_pesanan : []
     }
   }
 
@@ -40,6 +42,40 @@ class Main extends Component {
     })
   }
 
+  populerData = (populer_data) => {
+    console.log("main populer", populer_data);
+    this.setState({
+      populer_data : populer_data
+    })
+    console.log('populer_data', populer_data);
+  }
+
+  pesananHasil = (hasil) => {
+    console.log("hasil pesanan", hasil);
+    this.setState({
+      hasil_pesanan : hasil
+    })
+    console.log("state hasil_pesanan", this.state.hasil_pesanan);
+  }
+
+  handlerAdd = () => {
+    const row = this.state.per_page
+    const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer/all`
+    Axios
+    .get(url)
+    .then(response => {
+      console.log('berhasil', response)
+      this.setState({
+        data : response.data.data,
+        page : response.data.meta.current_page,
+        last_page : response.data.meta.last_page
+      })
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
   render() {
     return (
       <Fragment>
@@ -57,7 +93,7 @@ class Main extends Component {
                 <Kategori categoryHandle={this.categoryHandle} />
               </div>
               <div className="row">
-                <Populer onPopulerChange={this.onPopulerChange} category={this.state.kategori_id} />
+                <Populer populer={this.populerData} category={this.state.kategori_id} />
               </div>
             </div>
           {/* End Menu Main   */}
@@ -67,13 +103,13 @@ class Main extends Component {
                 <Person />
               </div>
               <div className="row">
-                <Pesanan />
+                <Pesanan checkout={this.state.hasil_pesanan}/>
               </div>
             </div>
           {/* End Menu Checkout */}
           </div>
         </div>
-        <Modal name={this.state.populer}/>
+        <Modal populer_data={this.state.populer_data} handlerAdd={this.handlerAdd} pesanan={this.pesananHasil} />
       </Fragment>
     );
   }

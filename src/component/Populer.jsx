@@ -32,28 +32,12 @@ class Populer extends Component {
       })
     }
   }
-  
-  onPopulerChange = populer => {
-    console.log(populer);
-    this.props.onPopulerChange(populer)
+
+  populerData = populer => {
+    console.log('populer data', populer);
+    this.props.populer(populer);
   }
-  
-  onBasedCategory = () => {
-    const catId = this.id_makanan;
-    const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer?category_id=${catId}`;
-    Axios
-    .post(url)
-    .then(filter => {
-      console.log('filter', filter);
-      this.setState({
-        data : filter.data.data
-      })
-    })
-    .catch(gagal => {
-      console.log('gagal filter', gagal);
-    })
-  }
-  
+
   componentDidMount() {
     console.log(this.state.updateByName);
     const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer/all`
@@ -86,7 +70,7 @@ class Populer extends Component {
           <div className="pembungkus">
             {this.state.data.map((populer, index) => 
               <div className="pembungkus2 mt-5" key={index}>
-                <button type="button" className="btnImage" value={populer.name} onClick={() => {this.onPopulerChange(populer)}} data-toggle="modal" data-target="#exampleModal">
+                <button type="button" className="btnImage" value={populer.name} onClick={() => {this.populerData(populer)}} data-toggle="modal" data-target="#exampleModal">
                 <div className="imagep">
                   <img src={populer.image} />
                   <div className="durasi">
