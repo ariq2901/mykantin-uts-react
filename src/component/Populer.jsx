@@ -13,16 +13,17 @@ class Populer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('componentupdate');
-    console.log('componentupdate', this.props.category);
     if( this.props.category !== prevProps.category ) {
       const catId = this.props.category
-      console.log('id', catId);
-      const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer?category_id=${catId}`
+      if(typeof catId == 'number') {
+        var url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer?category_id=${catId}`
+      } else {
+        this.componentDidMount();
+        return false
+      }
       Axios
       .post(url)
       .then(berhasil => {
-        console.log('berhasil', berhasil);
         this.setState({
           data : berhasil.data.data
         })
@@ -34,16 +35,13 @@ class Populer extends Component {
   }
 
   populerData = populer => {
-    console.log('populer data', populer);
     this.props.populer(populer);
   }
 
   componentDidMount() {
-    console.log(this.state.updateByName);
     const url = `https://belajar-react.smkmadinatulquran.sch.id/api/populer/all`
     Axios.get(url)
     .then(data => {
-      console.log('populer', data)
       this.setState({
         data : data.data.data,
       })

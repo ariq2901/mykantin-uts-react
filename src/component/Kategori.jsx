@@ -11,8 +11,11 @@ class Kategori extends Component {
   
   
   categoryHandle = id => {
-    console.log('categori handler', id);
     this.props.categoryHandle(id)
+  }
+
+  categoryAll = semua => {
+    this.props.categoryHandle(semua)
   }
 
   // const catId = id;
@@ -33,7 +36,6 @@ class Kategori extends Component {
     const url = `https://belajar-react.smkmadinatulquran.sch.id/api/category/3`
     Axios.get(url)
     .then(data => {
-      console.log('kategori', data)
       this.setState({
         data : data.data.data,
       })
@@ -52,7 +54,7 @@ class Kategori extends Component {
               <span className="htitle">Kategori</span>
             </div>
             <div className="btnoren">
-              <button className="btn btn-warning">Lebih lengkap</button>
+              <button className="btn btn-warning" onClick={() => this.categoryAll("all")}>Lebih lengkap</button>
             </div>
           </div>
         </div>

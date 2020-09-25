@@ -131,12 +131,34 @@ button:focus {
   outline: unset !important;
 }
 
+.btn-warning:focus {
+  outline: unset !important;
+}
+
+.btn:focus {
+  outline: unset !important;
+  box-shadow: unset !important;
+}
+
 .box {
   margin-top: 15px;
   width: 405px;
   display: flex;
   flex-direction: row-reverse;
   align-items: baseline;
+}
+
+.checkout button {
+  background: transparent;
+  border: none;
+}
+
+.checkout button i {
+  color: rgb(228, 9, 38);
+}
+
+.checkout button i:hover {
+  color: rgb(228, 111, 127);
 }
 
 .box i {
@@ -251,4 +273,24 @@ span.saldo {
 
 .imgBrand img {
   width:70px;
+}
+
+.alamat {
+  width: 250px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bayar {
+  width: 250px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.final button.btn-pesan {
+  margin-top: 5%;
+  width: 90%;
+  border-radius: 8px;
 }

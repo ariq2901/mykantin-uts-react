@@ -17,6 +17,7 @@ class Modal extends Component {
       populer : [],
       pesanan : [],
       total : 0,
+      total_harga : '',
     }
   }
 
@@ -31,20 +32,21 @@ class Modal extends Component {
         pesan : this.props.populer_data.pesan
       })
     }
-  }
-
-  componentDidMount() {
-    console.log('didMount');
-    console.log('populer_data', this.state.populer_data);
-    console.log('total', this.state.total);
+    var pesan = this.state.pesan;
+    var harga = this.state.harga;
+    var hargaTotal = pesan * harga;
+    setTimeout(() => {
+      this.setState({
+        total_harga : hargaTotal
+      })
+    }, 100)
   }
 
   onInput = (e) => {
     e.preventDefault()
-    console.log(e.target.value);
     if( e.target.id === "minus" ) {
       this.setState({
-        pesan : this.state.pesan + 1,
+        pesan : this.state.pesan - 1,
         jumlah : this.state.jumlah + 1
       })
     } else {
@@ -57,11 +59,10 @@ class Modal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    var hasil = [this.state.name,this.state.harga,this.state.pesan,this.state.image];
-    this.setState({
-      pesanan : hasil
-    })
-    this.props.pesanan(this.state.pesanan)
+    const total_harga = this.state.total_harga
+    const pemesanan = {name: this.state.name,harga: this.state.total_harga,pesan: this.state.pesan,image: this.state.image}
+    this.props.pesanan(pemesanan)
+    this.props.pesananHarga(total_harga)
   }
 
   render() {
@@ -82,7 +83,6 @@ class Modal extends Component {
                   </div>
                 </div>
                 {/* tombol */}
-                {console.log('pesanan', this.state.pesanan)}
                 <div className="kalkulasi mt-4">
                   <span>Stock : {this.state.jumlah}</span>
                   <div className="penjumlahan">
